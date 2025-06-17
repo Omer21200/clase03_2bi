@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app1',
-    'jazzmin',
+    
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,76 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Configuración de Jazzmin
+JAZZMIN_SETTINGS = {
+    "site_title": "Panel Administrativo",
+    "site_header": "Gestión Académica",
+    "site_brand": "Semana 3 Segundo Bimestre",
+
+    # No se define site_logo ni login_logo
+    "site_logo": None,
+    "login_logo": None,
+    "login_logo_dark": None,
+    "site_icon": None,
+    "site_logo_classes": "img-circle",
+
+    "welcome_sign": "Bienvenido al sistema académico",
+    "copyright": "© 2025 Proyecto Educativo",
+
+    "search_model": ["auth.User", "app1.Departamento"],
+
+    "user_avatar": None,
+
+    "topmenu_links": [
+        {"name": "Inicio", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Soporte", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+        {"model": "auth.User"},
+        {"app": "app1"},
+    ],
+
+    "usermenu_links": [
+        {"name": "Soporte", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+    ],
+
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "hide_apps": [],
+    "hide_models": [],
+    "order_with_respect_to": ["auth", "app1", "app1.Departamento"],
+
+    "custom_links": {
+        "app1": [{
+            "name": "Generar Reporte",
+            "url": "reporte_pdf",
+            "icon": "fas fa-file-pdf",
+            "permissions": ["app1.view_departamento"]
+        }]
+    },
+
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "app1": "fas fa-school",
+        "app1.Departamento": "fas fa-building",
+    },
+
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+
+    "related_modal_active": True,
+
+    "custom_css": None,
+    "custom_js": None,
+    "use_google_fonts_cdn": True,
+    "show_ui_builder": False,
+
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {
+        "auth.user": "collapsible",
+        "auth.group": "vertical_tabs",
+    },
+}
+
